@@ -1,6 +1,6 @@
 ---
 - name: Install Apache webserver
-  hosts: webservers
+  hosts: tag_webserver
   become: yes
   tasks:
     - name: Install Apache

@@ -1,0 +1,27 @@
+plugin: community.digitalocean.digitalocean
+api_token: "dop_v1_3e22be4b0a260b97fcfa54e1cbe3d89a25bdcc14979b69a034f2a9162aea9a8a"
+tag_name: "webserver"
+
+# Welke attributen ophalen van droplets
+attributes:
+  - id
+  - name
+  - tags
+  - networks
+
+# Compose transformeert droplet data naar Ansible variabelen
+compose:
+  ansible_host: do_networks.v4 | selectattr('type','eq','public') | map(attribute='ip_address') | first
+  ansible_user: gerry
+  ansible_ssh_private_key_file: /home/gerry/.ssh/id_ed25519_ansible
+  ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+# Groepeer droplets op tags
+keyed_groups:
+  - key: do_tags
+    prefix: 'tag'
+
+# Optioneel: extra groepen
+groups:
+  webserver_droplets:  # al je droplets met tag 'test'
+    hosts: []
