@@ -1,0 +1,28 @@
+- name: Push website to GitHub branch
+  hosts: localhost
+  vars:
+    repo_path: /home/gerry/devopsproject/website
+    branch: "{{ git_branch }}"
+    repo_url: "https://{{ github_token }}@github.com/gerrydenabt/Devopsproject.git"
+  tasks:
+
+    - name: Checkout juiste branch
+      ansible.builtin.shell: git checkout -B {{ branch }}
+      args:
+        chdir: "{{ repo_path }}"
+
+    - name: Voeg wijzigingen toe
+      ansible.builtin.shell: git add .
+      args:
+        chdir: "{{ repo_path }}"
+
+    - name: Commit wijzigingen
+      ansible.builtin.shell: git commit -m "Automated commit via Ansible" || true
+      args:
+        chdir: "{{ repo_path }}"
+
+    - name: Push naar GitHub
+      ansible.builtin.shell: git push origin {{ branch }} --force
+      args:
+        chdir: "{{ repo_path }}"
+

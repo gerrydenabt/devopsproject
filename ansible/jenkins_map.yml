@@ -1,0 +1,22 @@
+---
+- name: Copy Jenkins files to droplets
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure Jenkins folder exists on droplet
+      file:
+        path: /home/gerry/jenkins
+        state: directory
+        owner: gerry
+        group: gerry
+        mode: '0755'
+
+    - name: Copy Jenkins files to remote folder
+      copy:
+        src: /home/gerry/jenkins/      # lokale folder met Jenkins bestanden
+        dest: /home/gerry/jenkins/     # remote folder
+        owner: gerry
+        group: gerry
+        mode: '0644'
+        recurse: yes
+

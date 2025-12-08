@@ -1,5 +1,6 @@
 plugin: community.digitalocean.digitalocean
-api_token: "dop_v1_3e22be4b0a260b97fcfa54e1cbe3d89a25bdcc14979b69a034f2a9162aea9a8a"
+api_token: "dop_v1_6e75f3e4e83dff019367f52a5ff797ee374708922dabc349c729405f3cfee4dd"
+#api_token: "{{ lookup('env','DO_TOKEN') }}"
 tag_name: "webserver"
 
 # Welke attributen ophalen van droplets
@@ -23,5 +24,5 @@ keyed_groups:
 
 # Optioneel: extra groepen
 groups:
-  webserver_droplets:  # al je droplets met tag 'test'
+  test_droplets:  # al je droplets met tag 'test'
     hosts: []

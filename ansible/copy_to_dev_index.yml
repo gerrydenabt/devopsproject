@@ -1,0 +1,12 @@
+---
+- name: Copy index.html to dev
+  hosts: tag_Dev
+  become: yes
+  tasks:
+    - name: Copy index.html
+      ansible.builtin.copy:
+        src: ../website/index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'

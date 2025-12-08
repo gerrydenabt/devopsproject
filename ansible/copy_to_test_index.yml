@@ -1,0 +1,12 @@
+---
+- name: Copy index.html to test
+  hosts: tag_test
+  become: yes
+  tasks:
+    - name: Copy index.html
+      ansible.builtin.copy:
+        src: ../website/index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'

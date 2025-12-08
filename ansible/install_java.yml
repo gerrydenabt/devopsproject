@@ -1,0 +1,22 @@
+---
+- name: Install Java 21
+  hosts: tag_webserver
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install OpenJDK 21 JRE headless
+      apt:
+        name: openjdk-21-jre-headless
+        state: present
+
+    - name: Verify Java installation
+      command: java -version
+      register: java_version
+      ignore_errors: yes
+
+    - name: Display Java version
+      debug:
+        var: java_version.stdout_lines
