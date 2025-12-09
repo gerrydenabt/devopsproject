@@ -1,0 +1,12 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Jenkins Deployment Dashboard",
+    "tags": ["jenkins"],
+    "timezone": "browser",
+    "panels": [],
+    "schemaVersion": 36,
+    "version": 0
+  },
+  "overwrite": true
+}
